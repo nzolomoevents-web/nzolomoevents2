@@ -342,11 +342,6 @@
     color: var(--or);
     margin-bottom: 36px;
   }
-  .service-icon {
-    font-size: 2.2rem;
-    margin-bottom: 24px;
-    display: block;
-  }
 
   .service-illustration {
     width: 100%;
@@ -356,6 +351,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #141414;
+    border: 1px solid rgba(255,255,255,0.04);
   }
   .service-illustration img {
     width: 100%;
@@ -863,9 +860,14 @@
 
 <!-- NAVIGATION -->
 <nav>
-  <a class="logo" href="#" style="color: #888; font-family: ;">NZOLOMO<span>·</span>EVENTS</a>
+<a class="logo" href="#" style="color: #888; font-family: 'Syne', sans-serif;">NZOLOMO<span>·</span>EVENTS</a>
   <ul class="nav-links">
+    <li><a href="#">Accueil</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+
+
+  
   
     <li><a href="#about">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -935,12 +937,163 @@
   </div>
 </div>
 
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-label">✦ Services</p>
+      <h2 class="section-title">Ce que nous faisons<br>pour vos événements</h2>
+    </div>
+    <p class="section-desc">Ajoutez votre image dans chaque carte : remplacez simplement le fichier dans l’attribut <strong>src</strong>.</p>
+  </div>
 
- 
+  <div class="services-grid reveal">
+    <!-- Mariez civil -->
+    <article class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/mariage-civil.jpg` par votre photo -->
+        <img src="images/mariage (2).jpg" alt="Mariage civil">
+      </div>
+      <h3 class="service-name">Mariages civil</h3>
+      <p class="service-text">Captation, photographie et montage sur mesure pour immortaliser votre journée.</p>
+      <div class="service-arrow">→</div>
+    </article>
 
+    <!-- Mariage coutumier -->
+    <article class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/mariage-coutumier.jpg` par votre photo -->
+        <img src="images/dote (1).jpg" alt="Mariage coutumier">
+      </div>
+      <h3 class="service-name">Mariage coutumier</h3>
+      <p class="service-text">Vivez chaque détail : cérémonies, costumes, ambiance, et retouches finales.</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Anniversaire -->
+    <article class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/anniversaire.jpg` par votre photo -->
+        <img src="images/anniversaire (3).jpg" alt="Anniversaire">
+      </div>
+      <h3 class="service-name">Anniversaire</h3>
+      <p class="service-text">Reportage photo/vidéo, montage dynamique et livraison rapide.</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Clip -->
+    <article class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/clip.jpg` par votre photo -->
+        <img src="images/clip.jpg" alt="Clip">
+      </div>
+      <h3 class="service-name">Clip</h3>
+      <p class="service-text">Production de clips : tournage, montage, colorimétrie et effets.</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Réalisation des pubs -->
+    <article class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/pub.jpg` par votre photo -->
+        <img src="images/pub.JPG" alt="Réalisation des pubs">
+      </div>
+      <h3 class="service-name">Réalisation des pub</h3>
+      <p class="service-text">Création et production de contenus publicitaires (vidéo + visuels).</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Location des voitures -->
+    <article class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/location-voitures.jpg` par votre photo -->
+        <img src="images/voiture.jpg" alt="Location des voitures">
+      </div>
+      <h3 class="service-name">Location des voitures</h3>
+      <p class="service-text">Mise à disposition de véhicules pour vos événements (selon disponibilité).</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Portrait -->
+    <article class="service-card">
+      <div class="service-num">07</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/portrait.jpg` par votre photo -->
+        <img src="images/portrait.JPG" alt="Portrait">
+      </div>
+      <h3 class="service-name">Portrait</h3>
+      <p class="service-text">Séance portrait : style, retouche, et rendu professionnel.</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Impression -->
+    <article class="service-card">
+      <div class="service-num">08</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/impression.jpg` par votre photo -->
+        <img src="images/impression.JPG" alt="Impression">
+      </div>
+      <h3 class="service-name">Impression</h3>
+      <p class="service-text">Impression de supports : affiches, flyers, banners et autres visuels.</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Collier personnalisé -->
+    <article class="service-card">
+      <div class="service-num">09</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/collier-personnalise.jpg` par votre photo -->
+        <img src="images/colier.WEBP" alt="Collier personnalisé">
+      </div>
+      <h3 class="service-name">Collier personalisé</h3>
+      <p class="service-text">Fabrication de colliers personnalisés (couleurs, motifs, texte).</p>
+      <div class="service-arrow">→</div>
+    </article>
+
+    <!-- Flocage personnalisé -->
+    <article class="service-card">
+      <div class="service-num">10</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/flocage-personnalise.jpg` par votre photo -->
+        <img src="images/flo.jpg" alt="Flocage personnalisé">
+      </div>
+      <h3 class="service-name">Flocage personalisé</h3>
+      <p class="service-text">Flocage sur tous types de vetement: design sur demande.</p>
+      <div class="service-arrow">→</div>
+    </article>
+     <!-- site web-->
+    <article class="service-card">
+      <div class="service-num">11</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/flocage-personnalise.jpg` par votre photo -->
+        <img src="images/site.png" alt="Flocage personnalisé">
+      </div>
+      <h3 class="service-name">Création de site web </h3>
+      <p class="service-text">Site web professionnel </p>
+      <div class="service-arrow">→</div>
+    </article>
+    <article class="service-card">
+      <div class="service-num">12</div>
+      <div class="service-illustration">
+        <!-- Instruction image : remplacez `images/pub.jpg` par votre photo -->
+        <img src="images/formation.png" alt="Réalisation des pubs">
+      </div>
+      <h3 class="service-name">Formation en audiovisuelle</h3>
+      <p class="service-text">Formation + accompagnement </p>
+      <div class="service-arrow">→</div>
+    </article>
+
+  </div>
+</section>
 
 <!-- RÉALISATIONS / PORTFOLIO -->
-  <div class="section-header reveal">
+  <div class="section-header reveal" id="portfolio">
     <div>
       <p class="section-label">✦ Portfolio</p>
       <h2 class="section-title">Nos<br>Réalisations</h2>
@@ -1008,7 +1161,7 @@
       <div class="work-overlay"><p class="work-tag">Anniversaire</p><h3 class="work-title">Anniversaire — Série 1</h3><p class="work-year">Nzolomo · Portfolio</p></div>
     </div>
     <div class="work-item" data-category="anniversaire">
-      <div class="work-media"><img src="images/anniversaire (2).jpg" alt="Anniversaire (2)"></div>
+      <div class="work-media"><img src="images/anniversaire44.JPG" alt="Anniversaire (2)"></div>
       <div class="work-overlay"><p class="work-tag">Anniversaire</p><h3 class="work-title">Anniversaire — Série 2</h3><p class="work-year">Nzolomo · Portfolio</p></div>
     </div>
     <div class="work-item" data-category="anniversaire">
@@ -1188,48 +1341,80 @@
     <div class="form-row">
       <div class="form-group">
         <label>Prénom</label>
-        <input type="text" placeholder="Aaaron">
+        <input id="prenom" type="text" placeholder="Aaaron" required>
       </div>
       <div class="form-group">
         <label>Nom</label>
-        <input type="text" placeholder="NZOLOMO">
+        <input id="nom" type="text" placeholder="NZOLOMO" required>
       </div>
     </div>
-   <form onsubmit="envoyerWhatsApp(event)">
-   
 
-    
-    <button type="submit">Envoyer</button>
+    <div class="form-group">
+      <label>Email</label>
+      <input id="email" type="email" placeholder="exemple@mail.com" required>
+    </div>
+
+   <form onsubmit="envoyerWhatsApp(event)">
+
+    <button class="submit-btn" type="submit">Envoyer</button>
 </form>
 
 <script>
 function envoyerWhatsApp(event) {
+    const emailInput = document.getElementById('email');
+    if (emailInput && !emailInput.checkValidity()) {
+      alert('Veuillez saisir une adresse email valide.');
+      return;
+    }
     event.preventDefault();
 
+    const prenom = document.getElementById("prenom").value;
     const nom = document.getElementById("nom").value;
     const email = document.getElementById("email").value;
+    const telephone = document.getElementById("telephone").value;
     const message = document.getElementById("message").value;
+    const service = document.getElementById("service").value;
 
     const texte =
-        `Bonjour, je m'appelle ${nom}%0A` +
-        `Email : ${email}%0A` +
+        `Bonjour, je souhaite un devis.\n` +
+        `Prénom : ${prenom}\n` +
+        `Nom : ${nom}\n` +
+        `Téléphone : ${telephone}\n` +
+        `Email : ${email}\n` +
+        `Service : ${service}\n` +
         `Message : ${message}`;
 
-    const url = `https://wa.me/242060964063?text=${texte}`;
+    const url = `https://wa.me/242069640663?text=${encodeURIComponent(texte)}`;
 
     window.open(url, "_blank");
 }
 </script>
+      <div class="form-group">
+      <label>Téléphone</label>
+      <input id="telephone" type="tel" placeholder="06 ...." required>
+    </div>
+
     <div class="form-group">
+      <label>Message</label>
+      <textarea id="message" placeholder="Décrivez votre besoin..." rows="4" required></textarea>
+    </div>
+
+      <div class="form-group">
       <label>Type d'événement</label>
-      <select>
+      <select id="service" required>
         <option value="">Sélectionner...</option>
-        <option>Mariage</option>
-        <option>Gala / Soirée corporate</option>
-        <option>Concert / Festival</option>
-        <option>Conférence / Séminaire</option>
-        <option>Reportage institutionnel</option>
-        <option>Autre</option>
+        <option value="Mariage">Mariage</option>
+        <option value="Mariages civil">Mariages civil</option>
+        <option value="Mariage coutumier">Mariage coutumier</option>
+        <option value="Anniversaire">Anniversaire</option>
+        <option value="Clip">Clip</option>
+        <option value="Réalisation des pub">Réalisation des pub</option>
+        <option value="Location des voitures">Location des voitures</option>
+        <option value="Portrait">Portrait</option>
+        <option value="Impression">Impression</option>
+        <option value="Collier personalisé">Collier personalisé</option>
+        <option value="Flocage personalisé">Flocage personalisé</option>
+        <option value="Création de site web">Création de site web</option>
       </select>
     </div>
     
@@ -1263,10 +1448,12 @@ function envoyerWhatsApp(event) {
     <div>
       <h4 class="footer-links" style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--or);margin-bottom:20px;font-family:'Syne',sans-serif;">Suivez-nous</h4>
       <div class="footer-social">
-        <a href="#" class="social-btn">📘</a>
-        <a href="#" class="social-btn">📸</a>
-        <a href="#" class="social-btn">▶️</a>
-        <a href="#" class="social-btn">💼</a>
+        <a href="https://www.tiktok.com/@nzolomoevents?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
+          <img src="images/tiktok.PNG" alt="TikTok" style="width:22px;height:22px;" />
+        </a>
+        <a href="https://www.instagram.com/nzolomo_events?igsh=YWVtY2RiZWVwczM3&utm_source=qr" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+          <img src="images/instagram.JPG" alt="Instagram" style="width:22px;height:22px;" />
+        </a>
       </div>
     </div>
   </div>
@@ -1336,3 +1523,4 @@ function envoyerWhatsApp(event) {
 </script>
 </body>
 </html>
+
