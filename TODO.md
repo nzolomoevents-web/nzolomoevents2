@@ -1,9 +1,9 @@
-# TODO - Section “Services”
+# TODO - Corrections images & filtre portfolio (sans changer le design)
 
-- [ ] Vérifier la section actuelle “SERVICES” (CSS) dans `index.html`
-- [ ] Ajouter une section HTML dédiée “Services” (id `services`) avec une grille dynamique de cartes
-- [ ] Permettre l’ajout simple de nouveaux services : ajouter des blocs dans un tableau/section
-- [ ] Ajouter/compléter le style CSS si nécessaire pour la nouvelle section
-- [ ] Mettre à jour la navigation pour pointer vers `#services` si ce n’est pas déjà le cas
-- [ ] Tester dans le navigateur (ou via ouverture de `index.html`) que la section s’affiche correctement
+- [ ] Étape 1: Forcer l’état initial du portfolio (classes is-visible/is-hidden) pour éviter images invisibles au chargement.
+- [ ] Étape 2: Rendre le JS du filtre robuste (null-check, éviter crash avant applyFilter).
+- [ ] Étape 3: Corriger la structure du formulaire CONTACT (telephone/message/service doivent être dans le <form>). Ne pas changer le design.
+- [ ] Étape 4: Corriger l’URL Google Fonts cassée.
+- [ ] Étape 5: Vérifier/corriger uniquement si nécessaire les src non conformes (majuscules/espaces/extensions) vs le dossier images/.
+- [ ] Étape 6: Mettre à jour le code final et expliquer chaque erreur avec le numéro de ligne + avant/après.
 

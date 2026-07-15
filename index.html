@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nzolomo-Events — Agence Audiovisuelle</title>
-<link href="https://fonts.goog leapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -27,6 +27,76 @@
     font-size: 16px;
     overflow-x: hidden;
     cursor: none;
+    overflow-y: auto;
+  }
+
+  /* Barre de défilement horizontale (navigation gauche/droite) */
+  .h-scroll-wrap {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: auto;
+    margin-top: 12px;
+  }
+
+  /* Piste visible */
+  .h-scroll-track {
+    width: 1200px; /* largeur “virtuel” pour permettre un vrai scroll */
+    height: 18px;
+    background: rgba(26,26,26,0.95);
+    border-top: 1px solid rgba(201,168,76,0.35);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    position: relative;
+    display: block;
+  }
+
+  .h-scroll-track::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35%;
+    height: 6px;
+    background: rgba(201,168,76,0.8);
+    border-radius: 999px;
+  }
+
+  /* Ajuste le comportement scrollbar sur webkit */
+  .h-scroll-wrap::-webkit-scrollbar {
+    height: 12px;
+  }
+  .h-scroll-wrap::-webkit-scrollbar-thumb {
+    background: rgba(201,168,76,0.75);
+    border-radius: 999px;
+  }
+  .h-scroll-wrap::-webkit-scrollbar-track {
+    background: rgba(26,26,26,0.7);
+  }
+
+  /* Petit écran : on rend la barre plus visible */
+  @media (max-width: 900px) {
+    .h-scroll-wrap { margin-top: 10px; }
+    .h-scroll-track { height: 22px; }
+  }
+
+  /* Barre de défilement (scrollbar) visible sous mobile/desktop */
+  html {
+    scrollbar-gutter: stable;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(201,168,76,0.5);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(26,26,26,0.6);
+  }
+  @supports (scrollbar-color: auto) {
+    * { scrollbar-color: rgba(201,168,76,0.6) rgba(26,26,26,0.6); }
   }
 
   /* CURSEUR PERSONNALISÉ */
@@ -53,6 +123,7 @@
     opacity: 0.6;
   }
   body:hover .cursor { opacity: 1; }
+  
 
   /* BARRE DE NAVIGATION */
   nav {
@@ -415,7 +486,29 @@
     padding: 12px 18px;
     cursor: none;
     transition: border-color 0.3s, color 0.3s, transform 0.2s, background 0.3s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
+
+  /* Galerie portfolio : transitions fluides lors du filtrage */
+  .work-item {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    will-change: opacity, transform;
+  }
+
+  .work-item.is-hidden{
+    display:none !important;
+}
+
+.work-item.is-visible{
+    display:block !important;
+}
+
+  .work-item.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
   .filter-btn:hover { border-color: var(--or); color: var(--or); transform: translateY(-2px); }
   .filter-btn.active {
     background: var(--or);
@@ -454,10 +547,29 @@
 
   .work-media img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
-  }
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+.works-grid {
+    display: grid !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.work-item {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+.work-media {
+    display: block !important;
+    min-height: 300px;
+    overflow: visible !important;
+}
 
   .work-overlay {
     position: absolute; inset: 0;
@@ -844,15 +956,87 @@
     .nav-links { display: none; }
     .hero { padding: 0 30px 60px; }
     .hero-bottom { flex-direction: column; align-items: flex-start; gap: 40px; }
+
+    /* Stats hero responsive */
+    .hero-stats { flex-direction: column; gap: 26px; align-items: flex-start; width: 100%; }
+    .stat-num { font-size: 2.3rem; }
+    .stat-label { font-size: 0.68rem; }
+
     .services, .works, .about, .contact, .testimonials, .cta-band, footer { padding-left: 30px; padding-right: 30px; }
     .services-grid, .about, .contact { grid-template-columns: 1fr; }
     .works-grid { grid-template-columns: 1fr; }
     .work-item.large { grid-column: 1; }
     .footer-top { flex-direction: column; gap: 50px; }
   }
+  /* Barre de progression du défilement */
+.scroll-progress{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background: linear-gradient(90deg, #FFD700, #ff9800);
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
+html,
+body{
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.horizontal-scroll{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:18px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    background:#111;
+    z-index:999999;
+}
+
+.horizontal-scroll-content{
+    width:1600px;
+    height:1px;
+}
+
 </style>
 </head>
+<script>
+// Force de départ en haut (évite certains comportements de restauration de scroll par le navigateur)
+window.addEventListener("load", () => {
+  try {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  } catch (e) {}
+
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+});
+
+window.addEventListener("scroll", function () {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let progress = (scrollTop / scrollHeight) * 100;
+
+    document.querySelector(".scroll-progress").style.width = progress + "%";
+});
+</script>
+<script>
+const scrollBar = document.querySelector(".horizontal-scroll");
+
+scrollBar.addEventListener("scroll", function () {
+    window.scrollTo(scrollBar.scrollLeft, window.scrollY);
+});
+
+window.addEventListener("scroll", function () {
+    scrollBar.scrollLeft = window.scrollX;
+});
+</script>
 <body>
+  <div class="scroll-progress"></div>
 
 <!-- Curseur personnalisé -->
 <div class="cursor" id="cursor"></div>
@@ -1093,7 +1277,9 @@
 </section>
 
 <!-- RÉALISATIONS / PORTFOLIO -->
-  <div class="section-header reveal" id="portfolio">
+  <!-- RÉALISATIONS / PORTFOLIO -->
+<section class="works" id="portfolio">
+ <div class="works-grid" id="worksGrid">
     <div>
       <p class="section-label">✦ Portfolio</p>
       <h2 class="section-title">Nos<br>Réalisations</h2>
@@ -1269,8 +1455,8 @@
     <img src="images/arrièreplan.JPG" alt="Équipe Nzolomo Events" class="about-image">
 </div>
     <div class="about-badge">
-      <span class="about-badge-num">5</span>
-      <span class="about-badge-label">Ans d'excellence</span>
+      <span class="about-badge-num">+5</span>
+      <span class="about-badge-label">Ans d'experience</span>
     </div>
   </div>
   <div class="about-content reveal">
@@ -1315,49 +1501,67 @@
         <p class="contact-item-label">Localisation</p>
         <p class="contact-item-value">Brazzaville, République du Congo</p>
       </div>
-     <div>
-    <p class="contact-item-label">Téléphone / WhatsApp</p>
-    <p class="contact-item-value">
-        <a href="https://wa.me/242060964063" target="_blank">
-            +242 06 964 06 63
-        </a>
-    </p>
-</div>
       <div>
-    <p class="contact-item-label">Email</p>
-    <p class="contact-item-value">
-        <a href="mailto:nzolomoevents@gmail.com">
+        <p class="contact-item-label">Téléphone / WhatsApp</p>
+        <p class="contact-item-value">
+          <a href="https://wa.me/242060964063" target="_blank">
+            +242 06 964 06 63
+          </a>
+        </p>
+      </div>
+      <div>
+        <p class="contact-item-label">Email</p>
+        <p class="contact-item-value">
+          <a href="mailto:nzolomoevents@gmail.com">
             nzolomoevents@gmail.com
-        </a>
-    </p>
-</div>
+          </a>
+        </p>
+      </div>
       <div>
         <p class="contact-item-label">Disponibilité</p>
         <p class="contact-item-value">Lundi – Dimanche, 8h – 20h</p>
       </div>
     </div>
   </div>
-  <div class="contact-form reveal">
-    <div class="form-row">
-      <div class="form-group">
-        <label>Prénom</label>
-        <input id="prenom" type="text" placeholder="Aaaron" required>
-      </div>
-      <div class="form-group">
-        <label>Nom</label>
-        <input id="nom" type="text" placeholder="NZOLOMO" required>
-      </div>
+
+ 
+
+<form onsubmit="envoyerWhatsApp(event)">
+
+    <div class="form-group">
+      <label>Téléphone</label>
+      <input id="telephone" type="tel" placeholder="06 ...." required>
     </div>
 
     <div class="form-group">
-      <label>Email</label>
-      <input id="email" type="email" placeholder="exemple@mail.com" required>
+      <label>Message</label>
+      <textarea id="message" placeholder="Décrivez votre besoin..." rows="4" required></textarea>
     </div>
 
-   <form onsubmit="envoyerWhatsApp(event)">
+    <div class="form-group">
+      <label>Type d'événement</label>
+      <select id="service" required>
+        <option value="">Sélectionner...</option>
+        <option value="Mariage">Mariage</option>
+        <option value="Mariages civil">Mariages civil</option>
+        <option value="Mariage coutumier">Mariage coutumier</option>
+        <option value="Anniversaire">Anniversaire</option>
+        <option value="Clip">Clip</option>
+        <option value="Réalisation des pub">Réalisation des pub</option>
+        <option value="Location des voitures">Location des voitures</option>
+        <option value="Portrait">Portrait</option>
+        <option value="Impression">Impression</option>
+        <option value="Collier personalisé">Collier personalisé</option>
+        <option value="Flocage personalisé">Flocage personalisé</option>
+        <option value="Création de site web">Création de site web</option>
+      </select>
+    </div>
 
-    <button class="submit-btn" type="submit">Envoyer</button>
+<button class="submit-btn" type="submit">Envoyer</button>
 </form>
+<div class="horizontal-scroll">
+    <div class="horizontal-scroll-content"></div>
+</div>
 
 <script>
 function envoyerWhatsApp(event) {
@@ -1389,40 +1593,10 @@ function envoyerWhatsApp(event) {
     window.open(url, "_blank");
 }
 </script>
-      <div class="form-group">
-      <label>Téléphone</label>
-      <input id="telephone" type="tel" placeholder="06 ...." required>
-    </div>
-
-    <div class="form-group">
-      <label>Message</label>
-      <textarea id="message" placeholder="Décrivez votre besoin..." rows="4" required></textarea>
-    </div>
-
-      <div class="form-group">
-      <label>Type d'événement</label>
-      <select id="service" required>
-        <option value="">Sélectionner...</option>
-        <option value="Mariage">Mariage</option>
-        <option value="Mariages civil">Mariages civil</option>
-        <option value="Mariage coutumier">Mariage coutumier</option>
-        <option value="Anniversaire">Anniversaire</option>
-        <option value="Clip">Clip</option>
-        <option value="Réalisation des pub">Réalisation des pub</option>
-        <option value="Location des voitures">Location des voitures</option>
-        <option value="Portrait">Portrait</option>
-        <option value="Impression">Impression</option>
-        <option value="Collier personalisé">Collier personalisé</option>
-        <option value="Flocage personalisé">Flocage personalisé</option>
-        <option value="Création de site web">Création de site web</option>
-      </select>
-    </div>
-    
-</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
+  
     <div class="footer-brand">
       <a class="logo" href="#">NZOLOMO<span>·</span>EVENTS</a>
       <p>Agence audiovisuelle basée à Brazzaville, spécialisée dans la captation, la production et la diffusion de vos événements.</p>
@@ -1491,24 +1665,45 @@ function envoyerWhatsApp(event) {
     });
   });
 
-  // Portfolio filters
+  // Portfolio filters (galerie filtrable + transitions)
   const filterButtons = document.querySelectorAll('.filter-btn');
   const workItems = document.querySelectorAll('.work-item[data-category]');
+
+  function normalizeFilterValue(val) {
+    return (val || '').toString().trim().toLowerCase();
+  }
+
+  // S'assure que l’état initial est "Tous" (toutes les images visibles)
+function applyFilter(filter) {
+    if (!filterButtons || !workItems) return;
+    const next = normalizeFilterValue(filter);
+
+    // Boutons actifs
+    filterButtons.forEach(b => {
+      const btnFilter = normalizeFilterValue(b.getAttribute('data-filter'));
+      b.classList.toggle('active', btnFilter === next);
+    });
+
+    // Cartes visibles/masquées (sans casser le layout : on utilise classes + opacity)
+    workItems.forEach(item => {
+      const category = normalizeFilterValue(item.getAttribute('data-category'));
+      const isVisible = next === 'all' || category === next;
+      item.classList.toggle('is-visible', isVisible);
+      item.classList.toggle('is-hidden', !isVisible);
+
+      // accessibilité / interaction
+      item.setAttribute('aria-hidden', (!isVisible).toString());
+    });
+  }
 
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.getAttribute('data-filter');
-
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      workItems.forEach(item => {
-        const category = item.getAttribute('data-category');
-        const isVisible = filter === 'all' || category === filter;
-        item.style.display = isVisible ? '' : 'none';
-      });
+      applyFilter(filter);
     });
   });
+
+  applyFilter('all');
 
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
